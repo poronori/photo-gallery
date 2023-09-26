@@ -46,7 +46,7 @@ class ImageDataView(ft.UserControl):
     
     def imageClick(e, image, openDialog):
         dlg = ft.AlertDialog(
-            title= ft.Image(src=image)
+            content = ft.Image(src=image)
         )
         openDialog(dlg)
     
