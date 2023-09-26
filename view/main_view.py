@@ -8,6 +8,7 @@ from .image_list_view import ImageDataListView
 
 
 def main(page):
+    
     page.title = "画像一覧表示"
     page.vertical_alignment = ft.CrossAxisAlignment.CENTER
     
@@ -23,15 +24,20 @@ def main(page):
         
     def getButtonClick(e):
         root = tk.Tk()
+        root.attributes('-topmost', True) #ダイアログを最前面に表示
         root.withdraw()
-
         # フォルダ選択
         target_dir = tkinter.filedialog.askdirectory(mustexist=True)
         dirs = getFiles(target_dir)
         
         for key, value in dirs.items():
-            imageList = ImageDataListView(key, value)
+            imageList = ImageDataListView(key, value, openDialog)
             addImageList(imageList)
+    
+    def openDialog(dlg:ft.AlertDialog):
+        page.dialog = dlg
+        dlg.open = True
+        page.update()
 
     get_button = ft.ElevatedButton("フォルダを選択", icon=ft.icons.CLOUD_CIRCLE, on_click=getButtonClick)
     page.add(

@@ -3,7 +3,7 @@ import flet as ft
 # 画像一覧のビュー
 class ImageDataListView(ft.UserControl):
     
-    def __init__(self, dir, files):
+    def __init__(self, dir, files, openDialog):
         super().__init__(self)
         self.dir = dir
         self.imageListView = ft.GridView(
@@ -14,11 +14,11 @@ class ImageDataListView(ft.UserControl):
             run_spacing=5,
         )
         for file in files:
-            self.add_image(file)
+            self.add_image(file, openDialog)
     
     # 画像を1枚ずつ追加
-    def add_image(self, image):
-        imageView = ImageDataView(image)
+    def add_image(self, image, openDialog):
+        imageView = ImageDataView(image, openDialog)
         self.imageListView.controls.append(imageView)
     
     def build(self):
@@ -32,14 +32,23 @@ class ImageDataListView(ft.UserControl):
 #個別の画像ビュー
 class ImageDataView(ft.UserControl):
     
-    def __init__(self, image):
+    def __init__(self, image, openDialog):
         super().__init__(self)
-        self.img = ft.Image(
-            src=image,
-            width=100,
-            height=100,
-            fit=ft.ImageFit.CONTAIN,
+        self.img = ft.TextButton(
+            content=ft.Image(
+                src=image,
+                width=100,
+                height=100,
+                fit=ft.ImageFit.CONTAIN,
+            ),
+            on_click=lambda _: self.imageClick(image, openDialog)
         )
+    
+    def imageClick(e, image, openDialog):
+        dlg = ft.AlertDialog(
+            title= ft.Image(src=image)
+        )
+        openDialog(dlg)
     
     def build(self):
         return self.img
