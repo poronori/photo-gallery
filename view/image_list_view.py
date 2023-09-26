@@ -1,4 +1,5 @@
 import flet as ft
+import subprocess
 
 # 画像一覧のビュー
 class ImageDataListView(ft.UserControl):
@@ -21,10 +22,17 @@ class ImageDataListView(ft.UserControl):
         imageView = ImageDataView(image, openDialog)
         self.imageListView.controls.append(imageView)
     
+    # フォルダを開く
+    def open_dir(e, dir):
+        subprocess.Popen(['start', dir], shell=True)
+    
     def build(self):
         return ft.Column(
             controls=[
-                ft.Text(self.dir),
+                ft.TextButton(
+                    text=self.dir,
+                    on_click=lambda _: self.open_dir(self.dir)
+                ),
                 self.imageListView
             ]
         )
