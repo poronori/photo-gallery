@@ -28,6 +28,7 @@ def main(page):
         
         # フォルダ選択
         target_dir = tkinter.filedialog.askdirectory(mustexist=True)
+        main_view.controls = [] # 表示項目の初期化
         dirs = getFiles(target_dir)
         
         for key, value in dirs.items():
@@ -36,6 +37,7 @@ def main(page):
             
         root.mainloop()
     
+    #プレビュー表示用　画像をアラートで表示させる
     def openDialog(dlg:ft.AlertDialog):
         page.dialog = dlg
         dlg.open = True
