@@ -26,7 +26,6 @@ def main(page):
         global index
         print('フォルダの数：' + str(len(dirs)))
         start = index[1]
-        print('スタート位置：' + str(start))
         next_flg = True
         # フォルダ毎に画像を読み取る
         for i in range(index[0], len(dirs)):
@@ -41,7 +40,6 @@ def main(page):
                 if count >= 100:
                     index[1] = j   # ファイルの位置記録
                     next_flg = False
-                    print('ファイルの位置：' + str(j))
                     break
             
             if next_flg:

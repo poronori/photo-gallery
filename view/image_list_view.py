@@ -46,11 +46,14 @@ class ImageDataView(ft.UserControl):
         self.img = ft.TextButton(
             content=ft.Image(
                 src=image,
-                width=100,
-                height=100,
-                fit=ft.ImageFit.CONTAIN,
+                width=150,
+                height=150,
+                fit=ft.ImageFit.COVER,
             ),
-            on_click=lambda _: self.imageClick(image, openDialog)
+            on_click=lambda _: self.imageClick(image, openDialog),
+            style=ft.ButtonStyle(
+                padding=0
+            )
         )
     
     def imageClick(e, image, openDialog):
