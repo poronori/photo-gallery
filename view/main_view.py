@@ -66,6 +66,7 @@ def main(page):
             if os.path.isfile(file):
                 # 拡張子を取得
                 root, ext = os.path.splitext(file)
+                ext = ext.lower()
                 # 画像ファイルをフォルダ毎にセット
                 if ext == ".jpg" or ext == ".png" or ext == ".jpeg" or ext == ".bmp":
                     dirname = os.path.dirname(file)
