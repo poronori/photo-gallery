@@ -14,6 +14,15 @@ class ImageDataListView(ft.UserControl):
             spacing=5,
             run_spacing=5,
         )
+        self.column = ft.Column(
+            controls=[
+                ft.TextButton(
+                    text=self.dir,
+                    on_click=lambda _: self.open_dir(self.dir)
+                ),
+                self.imageListView
+            ]
+        )
         for file in files:
             self.add_image(file, openDialog)
     
@@ -27,15 +36,7 @@ class ImageDataListView(ft.UserControl):
         subprocess.Popen(['start', dir], shell=True)
     
     def build(self):
-        return ft.Column(
-            controls=[
-                ft.TextButton(
-                    text=self.dir,
-                    on_click=lambda _: self.open_dir(self.dir)
-                ),
-                self.imageListView
-            ]
-        )
+        return self.column
 
 #個別の画像ビュー
 class ImageDataView(ft.UserControl):
