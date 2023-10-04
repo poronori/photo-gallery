@@ -92,10 +92,10 @@ def main(page):
         main_view.controls.pop()
         addImage()
     
-    get_button = ft.ElevatedButton("フォルダを選択", icon=ft.icons.CLOUD_CIRCLE, on_click=getButtonClick)
+    get_button = ft.ElevatedButton("フォルダを選択", icon=ft.icons.FOLDER_OUTLINED, on_click=getButtonClick)
     add_button = ft.Row(
         alignment=ft.MainAxisAlignment.CENTER,
-        controls = [ft.ElevatedButton("さらに読み込む", icon=ft.icons.ADD_CIRCLE_OUTLINE, on_click=addButtonClick)]
+        controls = [ft.ElevatedButton("さらに読み込む", icon=ft.icons.ADD_OUTLINED, on_click=addButtonClick)]
     )
     page.add(
         ft.Column(
